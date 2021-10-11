@@ -1,0 +1,23 @@
+DEGRADED	 PESQMOS	 SUBJMOS	 COND	 SAMPLE_FREQ	 CRUDE_DELAY
+noisy-5dB-origin.wav	 2.805	 0.000	 0	 16000	0.0000
+ noisy-5dB-origin.wav	 2.805	 0.000	 0	 16000	0.0000
+ noisy-5dB-ideaPF.wav	 3.329	 0.000	 0	 16000	0.0000
+ noisy-5dB-origin.wav	 2.805	 0.000	 0	 16000	0.0000
+ noisy-5dB-ideaPF.pcm	 3.174	 0.000	 20624	 16000	0.0000
+ noisy-5dB-origin.pcm	 2.555	 0.000	 20624	 16000	0.0000
+ noisy-5dB-ideaPF.pcm	 3.174	 0.000	 20624	 16000	0.0000
+ noisy-5dB-ideaPF.pcm	 3.174	 0.000	 20624	 16000	0.0000
+ noisy-5dB-ideaPF.pcm	 3.174	 0.000	 20624	 16000	0.0000
+ noisy-5dB-ideaPF.wav	 3.329	 0.000	 0	 16000	0.0000
+ noisy-5dB-origin.wav	 2.805	 0.000	 0	 16000	0.0000
+ noisy-5dB-ideaPF.wav	 3.329	 0.000	 0	 16000	0.0000
+ noisy-5dB-origin.wav	 2.805	 0.000	 0	 16000	0.0000
+ noisy-10dB-ideaPF.wav	 3.517	 0.000	 0	 16000	0.0000
+ noisy-10dB-origin.wav	 3.041	 0.000	 0	 16000	0.0000
+ noisy-10dB-ideaPF.wav	 3.517	 0.000	 0	 16000	0.0000
+ noisy-10dB-origin.wav	 3.041	 0.000	 0	 16000	0.0000
+ noisy-10dB-ideaPF.wav	 3.517	 0.000	 0	 16000	0.0000
+ noisy-10dB-origin.wav	 3.041	 0.000	 0	 16000	0.0000
+ noisy-5dB-ideaPF.wav	 3.329	 0.000	 0	 16000	0.0000
+ noisy-5dB-origin.wav	 2.805	 0.000	 0	 16000	0.0000
+ 

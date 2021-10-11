@@ -1,0 +1,23 @@
+REFERENCE	 DEGRADED	 PESQMOS	 PESQMOS	 SUBJMOS	 COND	 SAMPLE_FREQ	 CRUDE_DELAY
+clean-speech.wav	 noisy-5dB-origin.wav	 SQValue=2.805	 2.805	 0.000	 0	 16000	0.0000
+ clean-speech.wav	 noisy-5dB-origin.wav	 SQValue=2.805	 2.805	 0.000	 0	 16000	0.0000
+ clean-speech.wav	 noisy-5dB-ideaPF.wav	 SQValue=3.329	 3.329	 0.000	 0	 16000	0.0000
+ clean-speech.wav	 noisy-5dB-origin.wav	 SQValue=2.805	 2.805	 0.000	 0	 16000	0.0000
+ ../clean-speech.pcm	 ’V	 SQValue=3.174	 3.174	 0.000	 20624	 16000	0.0000
+ ../clean-speech.pcm	 ’V	 SQValue=2.555	 2.555	 0.000	 20624	 16000	0.0000
+ ../clean-speech.pcm	 ’V	 SQValue=3.174	 3.174	 0.000	 20624	 16000	0.0000
+ ../clean-speech.pcm	 ’V	 SQValue=3.174	 3.174	 0.000	 20624	 16000	0.0000
+ ..\clean-speech.pcm	 ’V	 SQValue=3.174	 3.174	 0.000	 20624	 16000	0.0000
+ ..\clean-speech.wav	 ..\noisy-5dB-ideaPF.wav	 SQValue=3.329	 3.329	 0.000	 0	 16000	0.0000
+ ..\clean-speech.wav	 ..\noisy-5dB-origin.wav	 SQValue=2.805	 2.805	 0.000	 0	 16000	0.0000
+ ..\clean-speech.wav	 ..\noisy-5dB-ideaPF.wav	 SQValue=3.329	 3.329	 0.000	 0	 16000	0.0000
+ ..\clean-speech.wav	 ..\noisy-5dB-origin.wav	 SQValue=2.805	 2.805	 0.000	 0	 16000	0.0000
+ ..\clean-speech.wav	 ..\noisy-10dB-ideaPF.wav	 SQValue=3.517	 3.517	 0.000	 0	 16000	0.0000
+ ..\clean-speech.wav	 ..\noisy-10dB-origin.wav	 SQValue=3.041	 3.041	 0.000	 0	 16000	0.0000
+ ..\clean-speech.wav	 ..\noisy-10dB-ideaPF.wav	 SQValue=3.517	 3.517	 0.000	 0	 16000	0.0000
+ ..\clean-speech.wav	 ..\noisy-10dB-origin.wav	 SQValue=3.041	 3.041	 0.000	 0	 16000	0.0000
+ ..\clean-speech.wav	 ..\noisy-10dB-ideaPF.wav	 SQValue=3.517	 3.517	 0.000	 0	 16000	0.0000
+ ..\clean-speech.wav	 ..\noisy-10dB-origin.wav	 SQValue=3.041	 3.041	 0.000	 0	 16000	0.0000
+ ..\clean-speech.wav	 ..\noisy-5dB-ideaPF.wav	 SQValue=3.329	 3.329	 0.000	 0	 16000	0.0000
+ ..\clean-speech.wav	 ..\noisy-5dB-origin.wav	 SQValue=2.805	 2.805	 0.000	 0	 16000	0.0000
+ 
