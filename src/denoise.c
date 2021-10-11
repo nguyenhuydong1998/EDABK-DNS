@@ -455,25 +455,62 @@ void pitch_filter(kiss_fft_cpx *X, const kiss_fft_cpx *P, const float *Ex, const
   }
 }
 
-float rnnoise_process_frame(DenoiseState *st, float *out, const float *in) {
+float rnnoise_process_frame(DenoiseState *st, DenoiseState *clean_state, float *out, const float *in, const float *clean) {
   int i;
   kiss_fft_cpx X[FREQ_SIZE];
+  kiss_fft_cpx Y[FREQ_SIZE];    // clean speech
   kiss_fft_cpx P[WINDOW_SIZE];
   float x[FRAME_SIZE];
+  float y[FRAME_SIZE];          // clean speech
   float Ex[NB_BANDS], Ep[NB_BANDS];
+  float Ey[NB_BANDS];           // clean speech
   float Exp[NB_BANDS];
   float features[NB_FEATURES];
   float g[NB_BANDS];
   float gf[FREQ_SIZE]={1};
   float vad_prob = 0;
   int silence;
+  int vad_cnt=0;                // clean speech
+  float vad=0;                  // clean speech
+  float E=0;                    // clean speech
   static const float a_hp[2] = {-1.99599, 0.99600};
   static const float b_hp[2] = {-2, 1};
   biquad(x, st->mem_hp_x, in, b_hp, a_hp, FRAME_SIZE);
+  biquad(y, clean_state->mem_hp_x, clean, b_hp, a_hp, FRAME_SIZE);
+  frame_analysis(clean_state, Y, Ey, clean);
   silence = compute_frame_features(st, X, P, Ex, Ep, Exp, features, x);
 
   if (!silence) {
+#if 0
     compute_rnn(&st->rnn, g, &vad_prob, features);
+#else
+      // VAD calculation
+      for (i=0;i<FRAME_SIZE;i++) E += clean[i]*clean[i];
+      if (E > 1e9f) {
+      vad_cnt=0;
+      } else if (E > 1e8f) {
+        vad_cnt -= 5;
+      } else if (E > 1e7f) {
+        vad_cnt++;
+      } else {
+        vad_cnt+=2;
+      }
+      if (vad_cnt < 0) vad_cnt = 0;
+      if (vad_cnt > 15) vad_cnt = 15;
+
+      if (vad_cnt >= 10) vad = 0;
+      else if (vad_cnt > 0) vad = 0.5f;
+      else vad = 1.f;
+
+      for (i=0;i<NB_BANDS;i++) {
+      g[i] = sqrt((Ey[i]+1e-3)/(Ex[i]+1e-3));
+      if (g[i] > 1) g[i] = 1;
+      if (silence) g[i] = -1;
+      if (Ey[i] < 5e-2 && Ex[i] < 5e-2) g[i] = -1;
+      if (vad==0) g[i] = -1;
+    }
+
+#endif
     pitch_filter(X, P, Ex, Ep, Exp, g);
     for (i=0;i<NB_BANDS;i++) {
       float alpha = .6f;

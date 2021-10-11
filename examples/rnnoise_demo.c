@@ -26,35 +26,65 @@
 */
 
 #include <stdio.h>
+#include <stdlib.h>
 #include "rnnoise.h"
 
+
 #define FRAME_SIZE 480
+
+void mix_signal_SNR(short *clean, short *noise, float alpha, float *out)
+{
+  int i;
+  for (i=0; i<FRAME_SIZE; i++)
+  {
+    out[i] = clean[i] + noise[i]*alpha;
+  }
+}
 
 int main(int argc, char **argv) {
   int i;
   int first = 1;
   float x[FRAME_SIZE];
-  FILE *f1, *fout;
+  float alpha=0.0;
+  FILE *f1, *f2, *fout;
   DenoiseState *st;
+  DenoiseState *clean_state;
+
+  clean_state = rnnoise_create(NULL);
   st = rnnoise_create(NULL);
-  if (argc!=3) {
-    fprintf(stderr, "usage: %s <noisy speech> <output denoised>\n", argv[0]);
+  if (argc!=5) {
+    fprintf(stderr, "usage: %s <clean speech> <noise> <alpha> <denoised speech>\n", argv[0]);
     return 1;
   }
-  f1 = fopen(argv[1], "rb");
-  fout = fopen(argv[2], "wb");
+  f1 = fopen(argv[1], "rb");  //clean speech
+  f2 = fopen(argv[2], "rb");  //noise
+  alpha = atof(argv[3]);
+  // fprintf(stderr, "alpha string = %s\n", argv[3]);
+  fprintf(stderr, "alpha float = %f\n", alpha);
+  fout = fopen(argv[4], "wb");  
   while (1) {
+    short clean[FRAME_SIZE];
+    short noise[FRAME_SIZE];
     short tmp[FRAME_SIZE];
-    fread(tmp, sizeof(short), FRAME_SIZE, f1);
-    if (feof(f1)) break;
-    for (i=0;i<FRAME_SIZE;i++) x[i] = tmp[i];
-    rnnoise_process_frame(st, x, x);
+    float ftmp[FRAME_SIZE];
+    fread(clean, sizeof(short), FRAME_SIZE, f1);
+    fread(noise, sizeof(short), FRAME_SIZE, f2);
+    if (feof(f1)||feof(f2)) break;
+
+    // Mixing signal
+    mix_signal_SNR(clean, noise, alpha, x);
+    for (i=0;i<FRAME_SIZE;i++) ftmp[i] = clean[i];
+
+    rnnoise_process_frame(st, clean_state, x, x, ftmp);
+
+    // Output
     for (i=0;i<FRAME_SIZE;i++) tmp[i] = x[i];
     if (!first) fwrite(tmp, sizeof(short), FRAME_SIZE, fout);
     first = 0;
   }
   rnnoise_destroy(st);
   fclose(f1);
+  fclose(f2);
   fclose(fout);
   return 0;
 }

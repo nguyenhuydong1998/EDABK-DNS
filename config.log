@@ -661,8 +661,10 @@ config.status:1111: creating rnnoise.pc
 config.status:1111: creating rnnoise-uninstalled.pc
 config.status:1111: creating doc/Doxyfile
 config.status:1111: creating config.h
+config.status:1292: config.h is unchanged
 config.status:1340: executing depfiles commands
 config.status:1417: cd .       && sed -e '/# am--include-marker/d' Makefile         | make -f - am--depfiles
+make: Nothing to be done for 'am--depfiles'.
 config.status:1422: $? = 0
 config.status:1340: executing libtool commands
 configure:15774:
@@ -792,7 +794,7 @@ lt_cv_truncate_bin='/usr/bin/dd bs=4096 count=1'
 ac_ct_AR='ar'
 ac_ct_CC='gcc'
 ac_ct_DUMPBIN=''
-ACLOCAL='${SHELL} '\''/d/Python/rnnoise/missing'\'' aclocal-1.16'
+ACLOCAL='${SHELL} '\''/d/EDABK-DNS/missing'\'' aclocal-1.16'
 am__EXEEXT_FALSE='#'
 am__EXEEXT_TRUE=''
 am__fastdepCC_FALSE='#'
@@ -813,9 +815,9 @@ AMDEP_TRUE=''
 AMDEPBACKSLASH='\'
 AMTAR='$${TAR-tar}'
 AR='ar'
-AUTOCONF='${SHELL} '\''/d/Python/rnnoise/missing'\'' autoconf'
-AUTOHEADER='${SHELL} '\''/d/Python/rnnoise/missing'\'' autoheader'
-AUTOMAKE='${SHELL} '\''/d/Python/rnnoise/missing'\'' automake-1.16'
+AUTOCONF='${SHELL} '\''/d/EDABK-DNS/missing'\'' autoconf'
+AUTOHEADER='${SHELL} '\''/d/EDABK-DNS/missing'\'' autoheader'
+AUTOMAKE='${SHELL} '\''/d/EDABK-DNS/missing'\'' automake-1.16'
 AWK='gawk'
 bindir='${exec_prefix}/bin'
 build_alias=''
@@ -860,7 +862,7 @@ infodir='${datarootdir}/info'
 INSTALL_DATA='${INSTALL} -m 644'
 INSTALL_PROGRAM='${INSTALL}'
 INSTALL_SCRIPT='${INSTALL}'
-install_sh='${SHELL} /d/Python/rnnoise/install-sh'
+install_sh='${SHELL} /d/EDABK-DNS/install-sh'
 INSTALL_STRIP_PROGRAM='$(install_sh) -c -s'
 LD='C:/msys64/mingw64/x86_64-w64-mingw32/bin/ld.exe'
 LDFLAGS=''
@@ -880,7 +882,7 @@ LTLIBOBJS=''
 MAINT=''
 MAINTAINER_MODE_FALSE='#'
 MAINTAINER_MODE_TRUE=''
-MAKEINFO='${SHELL} '\''/d/Python/rnnoise/missing'\'' makeinfo'
+MAKEINFO='${SHELL} '\''/d/EDABK-DNS/missing'\'' makeinfo'
 mandir='${datarootdir}/man'
 MANIFEST_TOOL=':'
 mkdir_p='$(MKDIR_P)'
