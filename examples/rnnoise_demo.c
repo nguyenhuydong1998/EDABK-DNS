@@ -33,16 +33,17 @@
 int main(int argc, char **argv) {
   int i;
   int first = 1;
-  float x[FRAME_SIZE];
-  FILE *f1, *fout;
+  float x[FRAME_SIZE+1];
+  FILE *f1, *fout, *fout_pitch;
   DenoiseState *st;
   st = rnnoise_create(NULL);
-  if (argc!=3) {
-    fprintf(stderr, "usage: %s <noisy speech> <output denoised>\n", argv[0]);
+  if (argc!=4) {
+    fprintf(stderr, "usage: %s <speech file> <denoised file> <pitch_file.txt>\n", argv[0]);
     return 1;
   }
   f1 = fopen(argv[1], "rb");
   fout = fopen(argv[2], "wb");
+  fout_pitch = fopen(argv[3],"a+");
   while (1) {
     short tmp[FRAME_SIZE];
     fread(tmp, sizeof(short), FRAME_SIZE, f1);
@@ -50,7 +51,12 @@ int main(int argc, char **argv) {
     for (i=0;i<FRAME_SIZE;i++) x[i] = tmp[i];
     rnnoise_process_frame(st, x, x);
     for (i=0;i<FRAME_SIZE;i++) tmp[i] = x[i];
-    if (!first) fwrite(tmp, sizeof(short), FRAME_SIZE, fout);
+    if (!first) 
+    {
+        fwrite(tmp, sizeof(short), FRAME_SIZE, fout);
+        fprintf(fout_pitch,"%.1f ", x[480]);
+        fprintf(fout_pitch,"\n");
+    }
     first = 0;
   }
   rnnoise_destroy(st);

@@ -94,6 +94,7 @@ struct DenoiseState {
   int last_period;
   float mem_hp_x[2];
   float lastg[NB_BANDS];
+  int pitch;
   RNNState rnn;
 };
 
@@ -328,8 +329,9 @@ static int compute_frame_features(DenoiseState *st, kiss_fft_cpx *X, kiss_fft_cp
   pitch_downsample(pre, pitch_buf, PITCH_BUF_SIZE, 1);
   pitch_search(pitch_buf+(PITCH_MAX_PERIOD>>1), pitch_buf, PITCH_FRAME_SIZE,
                PITCH_MAX_PERIOD-3*PITCH_MIN_PERIOD, &pitch_index);
+   st->pitch = pitch_index;
   pitch_index = PITCH_MAX_PERIOD-pitch_index;
-
+ 
   gain = remove_doubling(pitch_buf, PITCH_MAX_PERIOD, PITCH_MIN_PERIOD,
           PITCH_FRAME_SIZE, &pitch_index, st->last_period, st->last_gain);
   st->last_period = pitch_index;
@@ -471,7 +473,7 @@ float rnnoise_process_frame(DenoiseState *st, float *out, const float *in) {
   static const float b_hp[2] = {-2, 1};
   biquad(x, st->mem_hp_x, in, b_hp, a_hp, FRAME_SIZE);
   silence = compute_frame_features(st, X, P, Ex, Ep, Exp, features, x);
-
+  out[480] = (float)st->pitch;
   if (!silence) {
     compute_rnn(&st->rnn, g, &vad_prob, features);
     pitch_filter(X, P, Ex, Ep, Exp, g);

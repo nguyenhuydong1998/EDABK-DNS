@@ -252,13 +252,13 @@ distuninstallcheck_listfiles = find . -type f -print
 am__distuninstallcheck_listfiles = $(distuninstallcheck_listfiles) \
   | sed 's|^\./|$(prefix)/|' | grep -v '$(infodir)/dir$$'
 distcleancheck_listfiles = find . -type f -print
-ACLOCAL = ${SHELL} '/d/Python/rnnoise/missing' aclocal-1.16
+ACLOCAL = ${SHELL} '/e/EDABK-DNS/missing' aclocal-1.16
 AMTAR = $${TAR-tar}
 AM_DEFAULT_VERBOSITY = 0
 AR = ar
-AUTOCONF = ${SHELL} '/d/Python/rnnoise/missing' autoconf
-AUTOHEADER = ${SHELL} '/d/Python/rnnoise/missing' autoheader
-AUTOMAKE = ${SHELL} '/d/Python/rnnoise/missing' automake-1.16
+AUTOCONF = ${SHELL} '/e/EDABK-DNS/missing' autoconf
+AUTOHEADER = ${SHELL} '/e/EDABK-DNS/missing' autoheader
+AUTOMAKE = ${SHELL} '/e/EDABK-DNS/missing' automake-1.16
 AWK = gawk
 CC = gcc
 CCDEPMODE = depmode=gcc3
@@ -295,7 +295,7 @@ LN_S = cp -pR
 LTLIBOBJS = 
 LT_SYS_LIBRARY_PATH = 
 MAINT = 
-MAKEINFO = ${SHELL} '/d/Python/rnnoise/missing' makeinfo
+MAKEINFO = ${SHELL} '/e/EDABK-DNS/missing' makeinfo
 MANIFEST_TOOL = :
 MKDIR_P = /usr/bin/mkdir -p
 NM = /mingw64/bin/nm -B
@@ -321,10 +321,10 @@ SET_MAKE =
 SHELL = /bin/sh
 STRIP = strip
 VERSION = unknown
-abs_builddir = /d/Python/rnnoise
-abs_srcdir = /d/Python/rnnoise
-abs_top_builddir = /d/Python/rnnoise
-abs_top_srcdir = /d/Python/rnnoise
+abs_builddir = /e/EDABK-DNS
+abs_srcdir = /e/EDABK-DNS
+abs_top_builddir = /e/EDABK-DNS
+abs_top_srcdir = /e/EDABK-DNS
 ac_ct_AR = ar
 ac_ct_CC = gcc
 ac_ct_DUMPBIN = 
@@ -353,7 +353,7 @@ host_vendor = pc
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
-install_sh = ${SHELL} /d/Python/rnnoise/install-sh
+install_sh = ${SHELL} /e/EDABK-DNS/install-sh
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
@@ -945,8 +945,8 @@ maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
 	@echo "it deletes files that may require special tools to rebuild."
 clean-local:
-install-data-local:
 uninstall-local:
+install-data-local:
 clean: clean-am
 
 clean-am: clean-generic clean-libLTLIBRARIES clean-libtool clean-local \
