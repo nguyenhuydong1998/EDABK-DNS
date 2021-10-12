@@ -7,4 +7,5 @@ Matlab test pitch analysis:
   * testpitch.m : 
     Input: file wav of clean speech, noise and SNR
     Output: Variance of pitch index of clean and noisy speech
-You can adapt testpitch.m for your purpose. 
+You can adapt testpitch.m to compare pitch analysis of rnnoise with function built-in pitch on matlab. 
+https://www.mathworks.com/help/audio/ref/pitch.html
