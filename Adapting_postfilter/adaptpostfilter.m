@@ -8,7 +8,7 @@ t=length(inp_aud)/fs; %%% signal duration
 fprintf('Signal duration= %f secs\n',t);
 fprintf('Sampling frequency= %d Hz\n',fs);
 
-p=10;  % LPC predictor order
+p=10;  % LPC order
 
 fr=0.03;    %frame size=30ms
 fprintf('Frame size= %d ms\n',fr*1000);
