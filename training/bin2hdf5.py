@@ -3,6 +3,7 @@
 from __future__ import print_function
 from h5py._hl.base import find_item_type
 from h5py._hl.dataset import ChunkIterator
+from keras.mixed_precision.loss_scale_optimizer import _DEFAULT_INITIAL_SCALE
 
 import numpy as np
 import h5py
@@ -10,7 +11,6 @@ import sys
 import os
 
 from numpy.core.fromnumeric import shape
-from sqlalchemy.sql.expression import false
 
 
 # data = np.fromfile(sys.argv[1], dtype='float32');
@@ -19,36 +19,42 @@ from sqlalchemy.sql.expression import false
 # h5f.create_dataset('data', data=data)
 # h5f.close()
 
-# argv = ['bin2hdf5', './training/training.f32', '1000', '87', './training/training1.h5']
+origin = True
+
+argv = ['bin2hdf5', './training/training.f32', '1000', '87', './training/training1.h5']
 argv = sys.argv
 
-# data = np.fromfile(sys.argv[1], dtype='float32');
-# data = np.reshape(data, (int(sys.argv[2]), int(sys.argv[3])));
-# h5f = h5py.File(sys.argv[4], 'w');
-# h5f.create_dataset('data', data=data)
-# h5f.close()
+if origin == True:
+# Origin
+    data = np.fromfile(sys.argv[1], dtype='float32');
+    data = np.reshape(data, (int(sys.argv[2]), int(sys.argv[3])));
+    h5f = h5py.File(sys.argv[4], 'w');
+    h5f.create_dataset('data', data=data)
+    h5f.close()
 
-lenSample = int(argv[3])
-maxIdx = int(argv[2])
-stepIdx = 10000
-offset = 0
-if os.path.exists(argv[4]):
-    os.remove(argv[4])
-h5f = h5py.File(argv[4], 'a')
-dset = h5f.create_dataset('data', (0,lenSample), chunks=True, maxshape=(None,lenSample))
-fileIn = open(argv[1], 'rb')
-# convert bin to h5 file
-for a in range(0, maxIdx, stepIdx):
-    offset = a
-    data = fileIn.read(stepIdx*lenSample*4)
-    # data = list(data)
-    data = np.fromstring(data, 'float32')
-    # data = np.fromfile(argv[1], dtype='float32', count=stepIdx*lenSample, offset=offset)
-    data = np.reshape(data, (int(stepIdx), lenSample))
-    dset.resize(dset.shape[0]+stepIdx, axis=0)   
-    dset[-stepIdx:] = data
-    print(dset.shape)
-h5f.close()
+# Modified
+else:
+    lenSample = int(argv[3])
+    maxIdx = int(argv[2])
+    stepIdx = 10000
+    offset = 0
+    if os.path.exists(argv[4]):
+        os.remove(argv[4])
+    h5f = h5py.File(argv[4], 'a')
+    dset = h5f.create_dataset('data', (0,lenSample), chunks=True, maxshape=(None,lenSample))
+    fileIn = open(argv[1], 'rb')
+    # convert bin to h5 file
+    for a in range(0, maxIdx, stepIdx):
+        offset = a
+        data = fileIn.read(stepIdx*lenSample*4)
+        # data = list(data)
+        data = np.fromstring(data, 'float32')
+        # data = np.fromfile(argv[1], dtype='float32', count=stepIdx*lenSample, offset=offset)
+        data = np.reshape(data, (int(stepIdx), lenSample))
+        dset.resize(dset.shape[0]+stepIdx, axis=0)   
+        dset[-stepIdx:] = data
+        print(dset.shape)
+    h5f.close()
 
 
 # filename1 = "./training/training1.h5"
