@@ -7,8 +7,8 @@ Original file is located at
     https://colab.research.google.com/drive/1N_kVYcGdqMA49G9P9__tAwpCbP3QZmfo
 """
 
-from google.colab import drive
-drive.mount('/content/drive')
+#from google.colab import drive
+#drive.mount('/content/drive')
 
 import numpy as np
 from scipy.io import wavfile as wave 
